@@ -1,3 +1,25 @@
+header {
+    color: white;
+}
 body {
-    background-color: grey;
+    background-color: brown;
+    text-align: center;
+}
+
+#book-shelf {
+    background-color: aliceblue;
+    display: grid;
+    column-gap: 10px;
+    row-gap: 15px;
+}
+
+.book {
+    background-color: pink;
+    width: 200px;
+    height: 100px;
+}
+
+.section {
+    margin: 10px;
+    border: 1px solid black;
 }
