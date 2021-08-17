@@ -64,5 +64,19 @@ function displayBooks() {
     
     bookShelf.appendChild(newBook);
     }
+}
 
+//Popup form
+const modal = document.getElementById('myModal');
+const btn = document.getElementById('myBtn');
+const span = document.getElementById('close');
+//When user clicks on the btn, open modal(popup form)
+btn.onclick = () => modal.style.display = 'block';
+//when user clicks on x btn, close modal
+span.onclick = () => modal.style.display = 'none';
+//when user clicks anywhere outside of the modal, close modal
+window.onclick = e => {
+    if (e.target == modal) {
+        modal.style.display = 'none';
+    }
 }
