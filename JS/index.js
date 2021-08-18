@@ -17,28 +17,39 @@ let myLibrary = [
 ];
 
 //Constructor
-function Book() {
+function Book(title, author, numOfPage) {
+    this.title = `Title: ${title}`,
+    this.author = `Author: ${author}`,
+    this.numOfPage = `Pages: ${numOfPage}`
+}
+
+//test
+//if (submit bttn pressed && modal.display == 'none') {
+// const inputtedTitle = querySelector('title').value
+// addBookToLibrary(inputtedTitle)
+//}
+function submitted() {
 
 }
 
 //Adds book to array
 function addBookToLibrary(title, author, numOfPage) {
-    let obj = {
-         title : title,
-         author : author,
-         numOfPage : numOfPage
-    };
+    let obj = new Book(title, author, numOfPage )
     myLibrary.push(obj);
-
+    displayBooks();
     console.table(myLibrary);
 }
 
 //Loop through array and display each book on the page
 function displayBooks() {
-    const bookShelf = document.getElementById('book-shelf');
-  
-    for(let i = 0; i < myLibrary.length; i++) {
 
+    const bookShelf = document.getElementById('book-shelf');
+    //Prevents duplicates when new book added
+    while (bookShelf.firstChild) {
+    bookShelf.removeChild(bookShelf.firstChild);
+    }
+    
+    for(let i = 0; i < myLibrary.length; i++) {
     const title = myLibrary[i].title;
     const author = myLibrary[i].author;
     const numOfPage = myLibrary[i].numOfPage;
@@ -49,7 +60,6 @@ function displayBooks() {
     authorDiv.classList.add('section');
     let numOfPageDiv = document.createElement('div');
     numOfPageDiv.classList.add('section');
-
     
     let newBook = document.createElement('div');
     newBook.classList.add('book');
