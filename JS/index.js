@@ -1,21 +1,5 @@
 //Infos of the books are stored objects inside this array
-let myLibrary = [    {
-    title : 'Life of Pi',
-    author : 'John Mackenzy',
-    numOfPage : 150
-}, 
-{
-    title : 'Think, Grow, Rich',
-    author : 'Napoleon Hill',
-    numOfPage : 89
-},
-{
-    title : 'Namastays',
-    author : 'Inis Bramancharis',
-    numOfPage : 1000
-}
-
-];
+let myLibrary = [];
 
 //Constructor
 function Book(title, author, numOfPage) {
@@ -23,6 +7,12 @@ function Book(title, author, numOfPage) {
     this.author = `Author: ${author}`,
     this.numOfPage = `Pages: ${numOfPage}`
 }
+//Prototype
+Book.prototype.toggleRead = function (i) {
+    console.log(i); 
+ 
+}
+
 
 //When submit btn is clicked,
 const submitBtn = document.querySelector('#submitBtn');
@@ -45,14 +35,14 @@ function submitted() {
 
 //Adds book to array
 function addBookToLibrary(title, author, numOfPage) {
-    let obj = new Book(title, author, numOfPage )
+    let obj = new Book(title, author, numOfPage );
     myLibrary.push(obj);
     displayBooks();
     console.table(myLibrary);
 }
 
 //Loop through array and display each book on the page
-let i =0;
+let i = 0;
 function displayBooks() {
 
     const bookShelf = document.getElementById('book-shelf');
@@ -65,14 +55,14 @@ function displayBooks() {
     const title = myLibrary[i].title;
     const author = myLibrary[i].author;
     const numOfPage = myLibrary[i].numOfPage;
-
+    
     let titleDiv = document.createElement('div');
     titleDiv.classList.add('section');
     let authorDiv = document.createElement('div');
     authorDiv.classList.add('section');
     let numOfPageDiv = document.createElement('div');
     numOfPageDiv.classList.add('section');
-    
+    //Add infos into newBook div
     let newBook = document.createElement('div');
     newBook.classList.add('book');
 
@@ -84,23 +74,41 @@ function displayBooks() {
     newBook.appendChild(authorDiv);
     newBook.appendChild(numOfPageDiv);
 
-    newBook.id = `${i}` ;//Now the div of the object can be defined with index
-    addDeleteBtn(newBook);
+    //Make a 'read' toggle 
+    const toggleBtn = document.createElement('label');
+    const toggleBtnType = document.createElement('input');
+    toggleBtnType.type = 'checkbox';
+    const toggleBtnSlider = document.createElement('span');
+    
+    toggleBtn.classList.add('switch');
+    toggleBtnSlider.classList.add('slider', 'round');
+    
+    toggleBtn.appendChild(toggleBtnType);
+    toggleBtn.appendChild(toggleBtnSlider);
+    newBook.appendChild(toggleBtn);
 
+    //Add event listener for toggle and link myLibrary[i].toggleRead
+    myLibrary[i].toggleRead(i);    
+    
+    //Append everything
+    addDeleteBtn(newBook);
     bookShelf.appendChild(newBook);
     }
 }
 function addDeleteBtn(newBook) {
+    const breakLine = document.createElement('br');
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Remove';
     deleteBtn.classList.add('remove-btn');
     deleteBtn.addEventListener('click', removeBookFromLibrary);
 
+    newBook.appendChild(breakLine);
     newBook.appendChild(deleteBtn);
 }
 //when delete btn is clicked
 function removeBookFromLibrary() {
     myLibrary.splice(i - 1, 1);
+    console.log(i);
     displayBooks();
 }
 
