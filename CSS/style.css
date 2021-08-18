@@ -17,12 +17,17 @@ body {
 .book {
     background-color: pink;
     width: 200px;
-    height: 100px;
+    height: 150px;
 }
 
 .section {
     margin: 10px;
     border: 1px solid black;
+}
+
+.remove-btn {
+    color: white;
+    background-color:black;
 }
 
 

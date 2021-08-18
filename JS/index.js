@@ -82,10 +82,31 @@ function displayBooks() {
     newBook.appendChild(titleDiv);
     newBook.appendChild(authorDiv);
     newBook.appendChild(numOfPageDiv);
-    
+    addDeleteBtn(newBook);
+
+    newBook.id = `${i}`;//Now the div of the object can be defined with index
+
     bookShelf.appendChild(newBook);
     }
 }
+function addDeleteBtn(newBook) {
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Remove';
+    deleteBtn.classList.add('remove-btn');
+
+    newBook.appendChild(deleteBtn);
+}
+
+//when remove btn is clicked
+
+
+function removeBookFromLibrary() {
+
+} 
+
+//add remove book function when 'remove book' btn is clicked
+//event.target = unique id 
+//remove object of that unique id.
 
 //Popup form
 const modal = document.getElementById('myModal');
