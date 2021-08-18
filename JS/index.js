@@ -1,3 +1,4 @@
+//Infos of the books are stored objects inside this array
 let myLibrary = [
     {
         title : 'Life of Pi',
@@ -23,13 +24,23 @@ function Book(title, author, numOfPage) {
     this.numOfPage = `Pages: ${numOfPage}`
 }
 
-//test
-//if (submit bttn pressed && modal.display == 'none') {
-// const inputtedTitle = querySelector('title').value
-// addBookToLibrary(inputtedTitle)
-//}
-function submitted() {
+//When submit btn is clicked,
+const submitBtn = document.querySelector('#submitBtn');
+const myForm = document.querySelector('#myForm');
 
+submitBtn.onclick = () => {
+        if (myForm[0].value !== '' && myForm[1].value !== '' && myForm[2].value > 0) {
+            return submitted();
+        }
+    }  
+function submitted() {
+    let formTitle = myForm[0].value;
+    let formAuthor = myForm[1].value;
+    let formPages = myForm[2].value;
+
+    addBookToLibrary(formTitle, formAuthor, formPages);
+    modal.style.display = 'none';
+    return false; //Disables page refresh after submit
 }
 
 //Adds book to array
@@ -81,7 +92,10 @@ const modal = document.getElementById('myModal');
 const btn = document.getElementById('myBtn');
 const span = document.getElementById('close');
 //When user clicks on the btn, open modal(popup form)
-btn.onclick = () => modal.style.display = 'block';
+btn.onclick = () => {
+    modal.style.display = 'block';
+    myForm.reset();
+}
 //when user clicks on x btn, close modal
 span.onclick = () => modal.style.display = 'none';
 //when user clicks anywhere outside of the modal, close modal
