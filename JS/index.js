@@ -1,20 +1,20 @@
 //Infos of the books are stored objects inside this array
-let myLibrary = [
-    {
-        title : 'Life of Pi',
-        author : 'John Mackenzy',
-        numOfPage : 150
-    }, 
-    {
-        title : 'Think, Grow, Rich',
-        author : 'Napoleon Hill',
-        numOfPage : 89
-    },
-    {
-        title : 'Namastays',
-        author : 'Inis Bramancharis',
-        numOfPage : 1000
-    }
+let myLibrary = [    {
+    title : 'Life of Pi',
+    author : 'John Mackenzy',
+    numOfPage : 150
+}, 
+{
+    title : 'Think, Grow, Rich',
+    author : 'Napoleon Hill',
+    numOfPage : 89
+},
+{
+    title : 'Namastays',
+    author : 'Inis Bramancharis',
+    numOfPage : 1000
+}
+
 ];
 
 //Constructor
@@ -52,6 +52,7 @@ function addBookToLibrary(title, author, numOfPage) {
 }
 
 //Loop through array and display each book on the page
+let i =0;
 function displayBooks() {
 
     const bookShelf = document.getElementById('book-shelf');
@@ -60,7 +61,7 @@ function displayBooks() {
     bookShelf.removeChild(bookShelf.firstChild);
     }
     
-    for(let i = 0; i < myLibrary.length; i++) {
+    for(i = 0; i < myLibrary.length; i++) {
     const title = myLibrary[i].title;
     const author = myLibrary[i].author;
     const numOfPage = myLibrary[i].numOfPage;
@@ -82,9 +83,9 @@ function displayBooks() {
     newBook.appendChild(titleDiv);
     newBook.appendChild(authorDiv);
     newBook.appendChild(numOfPageDiv);
-    addDeleteBtn(newBook);
 
-    newBook.id = `${i}`;//Now the div of the object can be defined with index
+    newBook.id = `${i}` ;//Now the div of the object can be defined with index
+    addDeleteBtn(newBook);
 
     bookShelf.appendChild(newBook);
     }
@@ -97,10 +98,10 @@ function addDeleteBtn(newBook) {
 
     newBook.appendChild(deleteBtn);
 }
-
 //when delete btn is clicked
 function removeBookFromLibrary() {
-    console.log('excuted');
+    myLibrary.splice(i - 1, 1);
+    displayBooks();
 }
 
 
