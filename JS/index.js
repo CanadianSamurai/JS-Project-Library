@@ -93,20 +93,16 @@ function addDeleteBtn(newBook) {
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Remove';
     deleteBtn.classList.add('remove-btn');
+    deleteBtn.addEventListener('click', removeBookFromLibrary);
 
     newBook.appendChild(deleteBtn);
 }
 
-//when remove btn is clicked
-
-
+//when delete btn is clicked
 function removeBookFromLibrary() {
+    console.log('excuted');
+}
 
-} 
-
-//add remove book function when 'remove book' btn is clicked
-//event.target = unique id 
-//remove object of that unique id.
 
 //Popup form
 const modal = document.getElementById('myModal');
