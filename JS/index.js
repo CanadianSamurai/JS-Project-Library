@@ -5,24 +5,18 @@ let myLibrary = [];
 function Book(title, author, numOfPage) {
     this.title = `Title: ${title}`,
     this.author = `Author: ${author}`,
-    this.numOfPage = `Pages: ${numOfPage}`
+    this.numOfPage = `Pages: ${numOfPage}`,
+    this.read = false;
+
 }
 //Prototype
-Book.prototype.toggleRead = function (i) {
-
-    console.log(i);
-}
-
-//Listen to toggle button
-function listenToToggleSwitch (i) {
-    const inputs = document.getElementB('switch');
-    Array.from(inputs).forEach(input => input.addEventListener('click', function() {
-        myLibrary[i].toggleRead(i);
-    }));
-}
-
-function test () {
-    console.log('excuted');
+Book.prototype.toggleRead = function () {
+    if (this.read == false) {
+        return this.read = true;
+    }
+    else {
+        return this.read = false;
+    }
 }
 
 //When submit btn is clicked,
@@ -92,30 +86,34 @@ function displayBooks() {
     bookShelf.appendChild(newBook);
     }
 }
-
 //Add toggle siwtch
-//!!! add book.toggleRead() and amend object.readStatus
 function addToggleSwitch(newBook, currentIndex) {
     const toggleBtn = document.createElement('label');
     const toggleBtnType = document.createElement('input');
     toggleBtnType.type = 'checkbox';
     const toggleBtnSlider = document.createElement('span');
+    const readText = document.createElement('span')
+    readText.textContent = 'read?';
+    readText.style.fontSize = '20px';
+    const breakLine = document.createElement('br');
 
+
+    //call prototype.function()
     toggleBtnType.addEventListener('click', function () {
-        console.log(currentIndex);
+        myLibrary[currentIndex].toggleRead();
     });
-
-    
+ 
     toggleBtn.classList.add('switch');
     toggleBtnSlider.classList.add('slider', 'round');
     toggleBtn.appendChild(toggleBtnType);
     toggleBtn.appendChild(toggleBtnSlider);
    
-    
+    newBook.appendChild(readText);
+    newBook.appendChild(breakLine);
     newBook.appendChild(toggleBtn);
-
 }
 
+//Add delete btn
 function addDeleteBtn(newBook, currentIndex) {
     const breakLine = document.createElement('br');
     const deleteBtn = document.createElement('button');
@@ -129,7 +127,6 @@ function addDeleteBtn(newBook, currentIndex) {
     newBook.appendChild(deleteBtn);
 }
 
-//when delete btn is clicked
 function removeBookFromLibrary(i) {
     myLibrary.splice(i, 1);
     displayBooks();
