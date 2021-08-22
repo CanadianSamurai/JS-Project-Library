@@ -9,8 +9,16 @@ function Book(title, author, numOfPage) {
 }
 //Prototype
 Book.prototype.toggleRead = function (i) {
-    console.log(i); 
- 
+
+    console.log(i);
+}
+
+//Listen to toggle button
+function listenToToggleSwitch (i) {
+    const inputs = document.getElementsByClassName('switch');
+    Array.from(inputs).forEach(input => input.addEventListener('click', function() {
+        myLibrary[i].toggleRead(i);
+    }));
 }
 
 
@@ -74,7 +82,7 @@ function displayBooks() {
     newBook.appendChild(authorDiv);
     newBook.appendChild(numOfPageDiv);
 
-    //Make a 'read' toggle 
+    //Add a toggle switch
     const toggleBtn = document.createElement('label');
     const toggleBtnType = document.createElement('input');
     toggleBtnType.type = 'checkbox';
@@ -82,19 +90,21 @@ function displayBooks() {
     
     toggleBtn.classList.add('switch');
     toggleBtnSlider.classList.add('slider', 'round');
+    //!!!!this needs fix!!!
+
     
     toggleBtn.appendChild(toggleBtnType);
     toggleBtn.appendChild(toggleBtnSlider);
-    newBook.appendChild(toggleBtn);
 
-    //Add event listener for toggle and link myLibrary[i].toggleRead
-    myLibrary[i].toggleRead(i);    
+    newBook.appendChild(toggleBtn);
     
     //Append everything
     addDeleteBtn(newBook);
     bookShelf.appendChild(newBook);
+    listenToToggleSwitch(i);
     }
 }
+
 function addDeleteBtn(newBook) {
     const breakLine = document.createElement('br');
     const deleteBtn = document.createElement('button');
@@ -105,10 +115,10 @@ function addDeleteBtn(newBook) {
     newBook.appendChild(breakLine);
     newBook.appendChild(deleteBtn);
 }
+
 //when delete btn is clicked
 function removeBookFromLibrary() {
     myLibrary.splice(i - 1, 1);
-    console.log(i);
     displayBooks();
 }
 
