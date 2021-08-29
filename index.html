@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yoyo's Library</title>
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-    <header>
-        YOYO's Library
-    </header>
-    <div id='book-shelf'>
-    </div>
-    <!--Popup form-->
-    <button class="my-btn" id="myBtn">New Book</button>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-            <span class="close" id="close">&times;</span>
-            <form action="" id="myForm" class="my-form">
-                <div class="form-content">
-                    <label for="title"></label>
-                    <input type="text" id="title" name="title" placeholder="title" value="test" required>
-                </div>  
-                <div class="form-content"> 
-                    <label for="author"></label>
-                    <input type="text" id="author" name="author" placeholder="author" value="test" required>
-                </div>
-                <div class="form-content">
-                    <label for="pages"></label>
-                    <input type="number" id="pages" name="pages" placeholder="pages" value="100"required>
-                </div>
-                <div>
-                    <input type="submit" id="submitBtn" value="Add to the library">
-                </div>
-            </form>
-        </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Yoyo's Library</title>
+		<link rel="stylesheet" href="CSS/style.css" />
+	</head>
+	<body>
+		<header>YOYO's Library</header>
+		<div id="book-shelf"></div>
+		<!--Popup form-->
+		<button class="my-btn" id="myBtn">New Book</button>
+		<div class="modal" id="myModal">
+			<div class="modal-content">
+				<span class="close" id="close">&times;</span>
+				<form action="" id="myForm" class="my-form">
+					<div class="form-content">
+						<label for="title"></label>
+						<input
+							type="text"
+							id="title"
+							name="title"
+							placeholder="title"
+							value="test"
+							required
+						/>
+					</div>
+					<div class="form-content">
+						<label for="author"></label>
+						<input
+							type="text"
+							id="author"
+							name="author"
+							placeholder="author"
+							value="test"
+							required
+						/>
+					</div>
+					<div class="form-content">
+						<label for="pages"></label>
+						<input
+							type="number"
+							id="pages"
+							name="pages"
+							placeholder="pages"
+							value="100"
+							required
+						/>
+					</div>
+					<div>
+						<input type="submit" id="submitBtn" value="Add to the library" />
+					</div>
+				</form>
+			</div>
+		</div>
 
-
-    </div>
-    
-
-
-
-    <script src="JS/index.js"></script>
-</body>
+		<script src="JS/index.js"></script>
+	</body>
 </html>
