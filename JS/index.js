@@ -14,6 +14,16 @@ if (localStorage.myObj0) {
 	console.log('yes, there is a stored data in localStorage. -Nathan');
 	for (let i = 0; i < localStorage.length; i++) {
 		let object_deserialized = JSON.parse(localStorage.getItem(`myObj${i}`)); //changes strings to object
+		//object_deserialized.prototype = Object.create(Book.prototype);
+		console.log(Object.values(object_deserialized));
+
+		//from here
+		let savedBook = new Book(
+			object_deserialized.title,
+			object_deserialized.author,
+			object_deserialized.numOfPage
+		);
+
 		myLibrary.push(object_deserialized);
 		displayBooks();
 	}
@@ -21,9 +31,9 @@ if (localStorage.myObj0) {
 
 //Constructor
 function Book(title, author, numOfPage) {
-	(this.title = `Title: ${title}`),
-		(this.author = `Author: ${author}`),
-		(this.numOfPage = `Pages: ${numOfPage}`),
+	(this.title = title),
+		(this.author = author),
+		(this.numOfPage = numOfPage),
 		(this.read = false);
 }
 //Prototype
@@ -89,9 +99,9 @@ function displayBooks() {
 		let newBook = document.createElement('div');
 		newBook.classList.add('book');
 
-		titleDiv.textContent = title;
-		authorDiv.textContent = author;
-		numOfPageDiv.textContent = numOfPage;
+		titleDiv.textContent = `Title: ${title}`;
+		authorDiv.textContent = `Author: ${author}`;
+		numOfPageDiv.textContent = `Pages: ${numOfPage}`;
 
 		newBook.appendChild(titleDiv);
 		newBook.appendChild(authorDiv);
