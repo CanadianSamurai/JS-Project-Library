@@ -14,17 +14,12 @@ if (localStorage.myObj0) {
 	console.log('yes, there is a stored data in localStorage. -Nathan');
 	for (let i = 0; i < localStorage.length; i++) {
 		let object_deserialized = JSON.parse(localStorage.getItem(`myObj${i}`)); //changes strings to object
-		//object_deserialized.prototype = Object.create(Book.prototype);
-		console.log(Object.values(object_deserialized));
-
-		//from here
-		let savedBook = new Book(
+		const savedBook = new Book(
 			object_deserialized.title,
 			object_deserialized.author,
 			object_deserialized.numOfPage
 		);
-
-		myLibrary.push(object_deserialized);
+		myLibrary.push(savedBook);
 		displayBooks();
 	}
 }
