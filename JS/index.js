@@ -6,6 +6,7 @@ function localStorageSetItem() {
 	for (let i = 0; i < myLibrary.length; i++) {
 		let object_serialized = JSON.stringify(myLibrary[i]); //changes object to strings
 		localStorage.setItem(`myObj${i}`, object_serialized);
+		console.log(myLibrary[i].read);
 	}
 }
 
@@ -17,7 +18,8 @@ if (localStorage.myObj0) {
 		const savedBook = new Book(
 			object_deserialized.title,
 			object_deserialized.author,
-			object_deserialized.numOfPage
+			object_deserialized.numOfPage,
+			object_deserialized.read
 		);
 		myLibrary.push(savedBook);
 		displayBooks();
@@ -25,18 +27,22 @@ if (localStorage.myObj0) {
 }
 
 //Constructor
-function Book(title, author, numOfPage) {
+function Book(title, author, numOfPage, read) {
 	(this.title = title),
 		(this.author = author),
 		(this.numOfPage = numOfPage),
-		(this.read = false);
+		(this.read = read);
 }
 //Prototype
 Book.prototype.toggleRead = function () {
-	if (this.read == false) {
-		return (this.read = true);
+	if (this.read == true) {
+		this.read = false;
+		localStorage.clear();
+		return localStorageSetItem();
 	} else {
-		return (this.read = false);
+		this.read = true;
+		localStorage.clear();
+		return localStorageSetItem();
 	}
 };
 
@@ -62,7 +68,7 @@ function submitted() {
 
 //Adds book to array
 function addBookToLibrary(title, author, numOfPage) {
-	let obj = new Book(title, author, numOfPage);
+	let obj = new Book(title, author, numOfPage, false);
 	myLibrary.push(obj);
 	displayBooks();
 	localStorage.clear();
