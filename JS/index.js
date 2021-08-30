@@ -6,13 +6,12 @@ function localStorageSetItem() {
 	for (let i = 0; i < myLibrary.length; i++) {
 		let object_serialized = JSON.stringify(myLibrary[i]); //changes object to strings
 		localStorage.setItem(`myObj${i}`, object_serialized);
-		console.log(myLibrary[i].read);
 	}
 }
 
 //If there is local storage data, show when page loaded.
 if (localStorage.myObj0) {
-	console.log('yes, there is a stored data in localStorage. -Nathan');
+	console.log('there is a stored data in localStorage. -Nathan');
 	for (let i = 0; i < localStorage.length; i++) {
 		let object_deserialized = JSON.parse(localStorage.getItem(`myObj${i}`)); //changes strings to object
 		const savedBook = new Book(
@@ -88,6 +87,7 @@ function displayBooks() {
 		const title = myLibrary[i].title;
 		const author = myLibrary[i].author;
 		const numOfPage = myLibrary[i].numOfPage;
+		const readStatus = myLibrary[i].read;
 		const currentIndex = i;
 
 		let titleDiv = document.createElement('div');
@@ -112,11 +112,17 @@ function displayBooks() {
 		addToggleSwitch(newBook, currentIndex);
 		addDeleteBtn(newBook, currentIndex);
 		bookShelf.appendChild(newBook);
+
+		if (readStatus == true) {
+			const toggleBtn = document.getElementById(`${currentIndex}`);
+			toggleBtn.click();
+		}
 	}
 }
 //Add toggle siwtch
 function addToggleSwitch(newBook, currentIndex) {
 	const toggleBtn = document.createElement('label');
+	toggleBtn.id = `${currentIndex}`;
 	const toggleBtnType = document.createElement('input');
 	toggleBtnType.type = 'checkbox';
 	const toggleBtnSlider = document.createElement('span');
@@ -128,6 +134,7 @@ function addToggleSwitch(newBook, currentIndex) {
 	//call prototype.function()
 	toggleBtnType.addEventListener('click', function () {
 		myLibrary[currentIndex].toggleRead();
+		console.log('toggled' + currentIndex);
 	});
 
 	toggleBtn.classList.add('switch');
