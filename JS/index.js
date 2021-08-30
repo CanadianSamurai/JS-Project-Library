@@ -1,6 +1,27 @@
 //Infos of the books are stored objects inside this array
 let myLibrary = [];
 
+//Constructor
+function Book(title, author, numOfPage, read) {
+	(this.title = title),
+		(this.author = author),
+		(this.numOfPage = numOfPage),
+		(this.read = read);
+}
+
+//Prototype
+Book.prototype.toggleRead = function () {
+	if (this.read == true) {
+		this.read = false;
+		localStorage.clear();
+		localStorageSetItem();
+	} else {
+		this.read = true;
+		localStorage.clear();
+		localStorageSetItem();
+	}
+};
+
 //store objects in localStorage
 function localStorageSetItem() {
 	for (let i = 0; i < myLibrary.length; i++) {
@@ -11,7 +32,7 @@ function localStorageSetItem() {
 
 //If there is local storage data, show when page loaded.
 if (localStorage.myObj0) {
-	console.log('there is a stored data in localStorage. -Nathan');
+	console.log('there is a stored data in localStorage.');
 	for (let i = 0; i < localStorage.length; i++) {
 		let object_deserialized = JSON.parse(localStorage.getItem(`myObj${i}`)); //changes strings to object
 		const savedBook = new Book(
@@ -24,26 +45,6 @@ if (localStorage.myObj0) {
 		displayBooks();
 	}
 }
-
-//Constructor
-function Book(title, author, numOfPage, read) {
-	(this.title = title),
-		(this.author = author),
-		(this.numOfPage = numOfPage),
-		(this.read = read);
-}
-//Prototype
-Book.prototype.toggleRead = function () {
-	if (this.read == true) {
-		this.read = false;
-		localStorage.clear();
-		return localStorageSetItem();
-	} else {
-		this.read = true;
-		localStorage.clear();
-		return localStorageSetItem();
-	}
-};
 
 //When submit btn is clicked,
 const submitBtn = document.querySelector('#submitBtn');
@@ -109,18 +110,14 @@ function displayBooks() {
 		newBook.appendChild(numOfPageDiv);
 
 		//Append everything
-		addToggleSwitch(newBook, currentIndex);
+		addToggleSwitch(newBook, currentIndex, readStatus);
 		addDeleteBtn(newBook, currentIndex);
 		bookShelf.appendChild(newBook);
-
-		if (readStatus == true) {
-			const toggleBtn = document.getElementById(`${currentIndex}`);
-			toggleBtn.click();
-		}
 	}
 }
+
 //Add toggle siwtch
-function addToggleSwitch(newBook, currentIndex) {
+function addToggleSwitch(newBook, currentIndex, readStatus) {
 	const toggleBtn = document.createElement('label');
 	toggleBtn.id = `${currentIndex}`;
 	const toggleBtnType = document.createElement('input');
@@ -130,11 +127,14 @@ function addToggleSwitch(newBook, currentIndex) {
 	readText.textContent = 'read?';
 	readText.style.fontSize = '20px';
 	const breakLine = document.createElement('br');
-
+	//If readStatus is true, toggle switch is clicked before addventlistener functions.
+	if (readStatus == true) {
+		toggleBtnType.click();
+	}
 	//call prototype.function()
 	toggleBtnType.addEventListener('click', function () {
 		myLibrary[currentIndex].toggleRead();
-		console.log('toggled' + currentIndex);
+		console.log(`toggled ${currentIndex}`);
 	});
 
 	toggleBtn.classList.add('switch');
