@@ -2,6 +2,9 @@ header {
 	color: white;
 	font-size: 50px;
 	font-family: 'Pacifico', cursive;
+	text-shadow: 10px 10px 0.5rem black;
+
+	margin-bottom: 10px;
 }
 body {
 	background-color: brown;
@@ -11,17 +14,19 @@ body {
 #book-shelf {
 	background-color: brown;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	column-gap: 10px;
 	row-gap: 15px;
 }
 
 .book {
-	background-color: pink;
+	background-color: rgba(255, 255, 255, 0.493);
 	width: 200px;
 	height: 200px;
 	border-radius: 5px;
 	border: 0.5px solid black;
+	font-family: 'Courgette', cursive;
+	box-shadow: 10px 10px 0.5rem #421b008e;
 }
 
 .section {
@@ -33,6 +38,7 @@ body {
 .remove-btn {
 	color: white;
 	background-color: black;
+	font-family: 'Courgette', cursive;
 }
 
 /* For toggle switch */
