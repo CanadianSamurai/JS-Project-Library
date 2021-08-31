@@ -20,18 +20,17 @@ body {
 }
 
 .book {
-	background-color: rgba(255, 255, 255, 0.493);
+	background-color: rgba(255, 255, 255, 0.438);
 	width: 200px;
 	height: 200px;
 	border-radius: 5px;
-	border: 0.5px solid black;
 	font-family: 'Courgette', cursive;
 	box-shadow: 10px 10px 0.5rem #421b008e;
 }
 
 .section {
 	margin: 10px;
-	border: 1px solid black;
+	border: 2px solid black;
 	border-radius: 5px;
 }
 
@@ -41,6 +40,25 @@ body {
 	font-family: 'Courgette', cursive;
 }
 
+.my-btn {
+	display: inline-block;
+	font-size: 30px;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Courgette', cursive;
+	background-color: rgba(255, 251, 0, 0.836);
+	box-shadow: 10px 10px 0.5rem #421b008e;
+	transition-duration: 0.4s;
+}
+
+.my-btn:hover {
+	background-color: brown;
+	color: rgba(255, 251, 0, 0.836);
+}
+
+button {
+	cursor: pointer;
+}
 /* For toggle switch */
 .switch {
 	/* The switch - the box around the slider */
